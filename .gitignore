@@ -1,0 +1,72 @@
+# Node
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+**/dist/
+**/build/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+.DS_Store
+
+# OS files
+Thumbs.db
+ehthumbs.db
+
+# Vite / frontend caches
+.vite/
+.cache/
+/.parcel-cache/
+
+# Jest cache
+/jest-cache/
+
+# ESLint cache
+.eslintcache
+
+# TypeScript compile output (if any other than dist/build)
+*.js
+*.d.ts
+*.map
+
+# Nest/TS artifacts
+/dist/
+/coverage/
+
+# pnpm store
+.pnpm-store/
+
+# Optional: lockfiles are frequently tracked, do NOT ignore them unless you know what you're doing
+# package-lock.json
+# pnpm-lock.yaml
+# yarn.lock
+
+# Ignore local editor or OS specific files
+*.swp
+*.swo
+__pycache__/
+
+# End of .gitignore
