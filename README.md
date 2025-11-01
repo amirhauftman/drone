@@ -14,7 +14,7 @@
 
 ### 2. npm install
 
-### 3.
+### 3. to run the app
   ## cd backend 
   ## npm run start:dev
   ## cd frontend
