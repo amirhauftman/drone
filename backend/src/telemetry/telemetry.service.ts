@@ -23,7 +23,7 @@ export class TelemetryService {
     };
 
     private targets = { ...this.state };
-    private interval: NodeJS.Timeout;
+    private interval: NodeJS.Timeout | null = null;
 
     start(intervalMs = 100) {
         this.chooseNewTargets();
@@ -34,10 +34,11 @@ export class TelemetryService {
     }
 
     stop() {
-        clearInterval(this.interval);
+        if (this.interval) clearInterval(this.interval);
+        this.interval = null;
     }
 
-    getCurrent() {
+    getCurrent(): Telemetry {
         return this.state;
     }
 
@@ -83,11 +84,11 @@ export class TelemetryService {
             this.state.x += gaussianNoise(0, 3);
             this.state.y += gaussianNoise(0, 3);
             this.state.altitude += gaussianNoise(0, 5);
-            this.state.yaw = clamp(this.state.yaw, -180, 180);
-            this.state.x = clamp(this.state.x, -7.5, 12);
-            this.state.y = clamp(this.state.y, -12, 9);
-            this.state.altitude = clamp(this.state.altitude, 0, 20);
-            console.log('Noisy data injected & clamped');
+            this.state.yaw = fixData(this.state.yaw, -180, 180);
+            this.state.x = fixData(this.state.x, -7.5, 12);
+            this.state.y = fixData(this.state.y, -12, 9);
+            this.state.altitude = fixData(this.state.altitude, 0, 20);
+            console.log('Noisy data injected & fixed'); // noisy data bonus
         }
     }
 }
@@ -100,7 +101,7 @@ function moveTowards(current: number, target: number, maxDelta: number) {
     if (Math.abs(diff) <= maxDelta) return target;
     return current + Math.sign(diff) * maxDelta;
 }
-function clamp(v: number, min: number, max: number) {
+function fixData(v: number, min: number, max: number) {
     return Math.max(min, Math.min(max, v));
 }
 function gaussianNoise(mean: number, stdDev: number) {
