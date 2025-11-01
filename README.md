@@ -15,13 +15,13 @@
 ### 2. npm install
 
 ### 3.
-## cd backend 
-## npm run start:dev
-## cd frontend
-## npm run dev
+  ## cd backend 
+  ## npm run start:dev
+  ## cd frontend
+  ## npm run dev
 
 ### 4. for build :
-## cd backend
-## npm run build
-## cd frontend
-## npm run build
+  ## cd backend
+  ## npm run build
+  ## cd frontend
+  ## npm run build
