@@ -28,8 +28,8 @@ function App() {
   useEffect(() => {
     socket.on('connect', () => setConnected(true));
     socket.on('disconnect', () => setConnected(false));
-    socket.on('telemetryUpdate', (payload: Telemetry) => {
-      setData(payload);
+    socket.on('telemetryUpdate', (payload: Telemetry) => { // recive data
+      setData(payload); //set the data from ws
       setLatency(Date.now() - payload.timestamp);
     });
     socket.on('batteryCritical', () => {
@@ -72,10 +72,10 @@ function App() {
               <div className="mt-2 h-3 bg-gray-700 rounded-full overflow-hidden">
                 <div
                   className={`h-full transition-all duration-300 ${data.batteryVoltage > 50
-                      ? 'bg-green-500'
-                      : data.batteryVoltage > 20
-                        ? 'bg-yellow-500'
-                        : 'bg-red-500'
+                    ? 'bg-green-500'
+                    : data.batteryVoltage > 20
+                      ? 'bg-yellow-500'
+                      : 'bg-red-500'
                     }`}
                   style={{ width: `${data.batteryVoltage}%` }}
                 />
@@ -98,7 +98,7 @@ function App() {
             <p className="mb-4">Battery at 1%. Simulation paused.</p>
             <button
               onClick={() => {
-                socket.emit('restartBattery');
+                socket.emit('restartBattery'); // tell the backend to reset the battery
                 setShowAlert(false);
               }}
               className="bg-green-600 px-6 py-2 rounded hover:bg-green-700"
